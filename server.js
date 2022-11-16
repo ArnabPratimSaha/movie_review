@@ -33,6 +33,7 @@ python.stdout.on('data', async(data) => {
     let index=res.length;
     for (let i = index; i < movies.length; i++) {
         const m = movies[i];
+        await fs.writeFile('error.json', JSON.stringify(`${m} -> ${i}`), 'utf8');
         const data=await movier.getTitleDetailsByName(m);
         res.push({
             index:i,
@@ -63,7 +64,11 @@ python.stdout.on('close', () => {
     // console.log('closed');
 })
 
-
+// movier.getTitleDetailsByName('REC 2').then(res=>{
+//     console.log('got it');
+// }).catch(e=>{
+//     console.log(e);
+// });
 app.use(err);
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))

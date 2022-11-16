@@ -1,0 +1,24 @@
+.moviecard-fulldiv{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.moviecard-fulldiv img{
+    height: 21rem;
+    width: 14rem;
+}
+.moviecard-fulldiv img:hover{
+    filter: drop-shadow(0 0 3px #555);
+}
+.moviecard-fulldiv p{
+    margin: 0 ;
+    padding: 0;
+    margin-top: 5px;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: capitalize;
+    font-family: 'Open Sans', sans-serif; 
+}

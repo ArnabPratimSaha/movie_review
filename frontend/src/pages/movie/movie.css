@@ -1,0 +1,129 @@
+.movie-topdiv{
+    min-height: 40rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+}
+.color_background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+    z-index: -1;
+}
+.movie_background{
+    position: absolute;
+    width: 100%;
+    background-size: cover;
+    z-index: -2;
+}
+.movie-main_container{
+    display: flex;
+    align-items: center;
+    padding: 10rem 5rem;
+    box-sizing: border-box;
+}
+.movie-poster img{
+    height: 30rem;
+    width: 20rem;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 5px#666); 
+}
+.movie-details{
+    flex: 1;
+    align-self: flex-start;
+    color: #fff;
+    padding: 1rem 5rem;
+    box-sizing: border-box;
+}
+.movie_title{
+    font-size: 3rem;
+    letter-spacing: 2px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+}
+.genre-div{
+    display: flex;
+    gap: 10px;
+}
+.movie-description{
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+
+}
+.movie_runtime{
+    margin-top: 1rem;
+}
+.movie-casts_casts{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.movie-casts h2{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+.movie-recommendation{
+    padding: 2rem;
+    box-sizing: border-box;
+}
+.rec-heading{
+    text-align: center;
+    margin: 0 ;
+    margin-bottom: 2rem;
+    padding: 0;
+    margin-top: 5px;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: capitalize;
+    font-family: 'Open Sans', sans-serif;
+}
+.movie-card-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+@media only screen and (max-width: 800px) {
+    .movie-main_container{
+        flex-direction: column;
+        padding: 0;
+        align-items: center;
+        padding-top: 5rem;
+    }
+    .movie_background{
+        height: 100%;
+        width: 150%;
+    }
+    .movie-poster{
+        /* max-width: 80%; */
+        display: flex;
+        justify-content: center;
+        max-width: 90%;
+    }
+    .movie-poster img{
+        height: 25rem;
+        width: 100%;
+    }
+    .movie-details{
+        padding: 2rem 1rem;
+    }
+    .rec-heading{
+        font-size: 1rem;
+    }
+    .movie-card-div{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+}
