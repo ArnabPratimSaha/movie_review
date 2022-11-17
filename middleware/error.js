@@ -6,6 +6,7 @@ class CustomError {
 }
 
 const err=(err,req,res,next)=>{
+    console.log(err);
     if(res.headerSent){
         next(err);
         return;

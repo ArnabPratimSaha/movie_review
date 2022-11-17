@@ -17,9 +17,9 @@ feature_vectors = vectorizer.fit_transform(combined_features)
 similarity = cosine_similarity(feature_vectors)
 
 
-movie_name= 'batman'
+# movie_name= 'batman'
 import sys
-# movie_name=str(sys.argv[1])
+movie_name=str(sys.argv[1])
 
 list_of_all_titles = movies_data['title'].tolist()
 find_close_match = difflib.get_close_matches(movie_name, list_of_all_titles)
@@ -31,18 +31,19 @@ sorted_similar_movies = sorted(similarity_score, key = lambda x:x[1], reverse = 
 i = 1
 
 res=[]
-# for movie in sorted_similar_movies:
-#   if (i<=10 and i!=1):
-#     index = movie[0]
-#     title_from_index = movies_data[movies_data.index==index]['title'].values[0]
-#     res.append(title_from_index)
-#   i+=1
+for movie in sorted_similar_movies:
+  if (i<=10):
+    index = movie[0]
+    title_from_index = movies_data[movies_data.index==index]['title'].values[0]
+    res.append({"title":title_from_index,"index":index})
+  i+=1
 
-movieIndex=0
-while movieIndex<=4802:
-  title_from_index = movies_data[movies_data.index==movieIndex]['title'].values[0]
-  res.append(title_from_index)
-  movieIndex+=1
+#scrap purpose
+# movieIndex=0
+# while movieIndex<=4802:
+#   title_from_index = movies_data[movies_data.index==movieIndex]['title'].values[0]
+#   res.append(title_from_index)
+#   movieIndex+=1
 
 
 import json
