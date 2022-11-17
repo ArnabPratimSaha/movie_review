@@ -2,25 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter,createBrowserRouter,RouterProvider,Route,createRoutesFromElements } from "react-router-dom";
+import { createBrowserRouter,RouterProvider,Route,createRoutesFromElements,BrowserRouter, Outlet } from "react-router-dom";
 import Movie from './pages/movie/movie';
 import ErrorBoundary from './pages/errorBoundary/error';
+import Home from './pages/home/home';
+import { movieLoader } from './loaders/movie';
+import Loading from './components/loading/loading';
+import Navbar from './components/navbar/navbar';
+
+
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path='/' errorElement={<ErrorBoundary />} >
-    <Route  path='movie' >
-      <Route
-      element={<Movie />}
-      path="new"
-      />
-    </Route>
+  <Route path='/' errorElement={<ErrorBoundary />} element={<><Navbar/><Outlet/></>}>
+    <Route  path='home' element={<Home/>}/>
+    <Route  loader={movieLoader}  path='movie/:id' element={<Movie/>} />
   </Route>
-
 ));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* <BrowserRouter>
+      <App/>
+    </BrowserRouter> */}
+    <RouterProvider router={router} fallbackElement={<Loading/>}/>
   </React.StrictMode>
 );
