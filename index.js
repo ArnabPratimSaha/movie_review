@@ -1,10 +1,31 @@
-const express = require('express')
-const app = express()
-const port = 3000
+require('dotenv').config();
+const express = require('express');
+const { err } = require('./middleware/error');
+const app = express();
+const cors=require('cors')
+const mongoose = require('mongoose');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const port = process.env.PORT || 3000;
+const connectMongo = async() => {
+    try {
+      const response =await mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
+      console.log(`Successfully Connected to ${response.connection.client.s.options.dbName}`);
+    } catch (error) {
+      console.log('could not connect to mongoDB ATLAS');
+    }
+  }
+  connectMongo();
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)})
+const movie = require('./routes/movie');
+
+app.use(express.urlencoded({extended:true}));
+app.use(express.json({extended:true}));
+app.use(express.raw({extended:true}));
+app.use(cors());
+
+app.use('/movie', movie);
+
+app.get('/', (req, res) => res.send('ROOT ROUTE'));
+app.use(err);
+
+app.listen(port, () => console.log(`App listening on port ${port}!`))
