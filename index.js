@@ -5,7 +5,7 @@ const app = express();
 const cors=require('cors')
 const mongoose = require('mongoose');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const connectMongo = async() => {
     try {
       const response =await mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
