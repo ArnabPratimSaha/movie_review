@@ -22,7 +22,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json({extended:true}));
 app.use(express.raw({extended:true}));
 app.use(cors());
-app.use(express.static('public'));
+const path = require('path')
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/movie', movie);
 
