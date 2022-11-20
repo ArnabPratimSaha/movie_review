@@ -15,7 +15,7 @@ const err=(err,req,res,next)=>{
         res.status(err.code).json(err.msg);
         return;
     }
-    res.status(500).json('Unknown Server Error');
+    res.status(500).json(err);
 }
 
 module.exports={err,CustomError}
