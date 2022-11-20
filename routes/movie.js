@@ -40,7 +40,7 @@ Router.get('/:name',async(req,res,next)=>{
     try {
         const name=req.params.name;
         const expr=new RegExp(req.params.name,'ig');
-        const file=JSON.parse(await fs.readFile('/data/myjsonfile.json'));
+        const file=JSON.parse((await fs.readFile('/data/myjsonfile.json')).toString());
         const validMovies=file.filter(m=>expr.test(m.title)).map(m=>m.title).slice(0,5)||[];
         res.status(200).json(validMovies);
     } catch (error) {
