@@ -22,6 +22,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json({extended:true}));
 app.use(express.raw({extended:true}));
 app.use(cors());
+app.use(express.static('public'));
 
 app.use('/movie', movie);
 
