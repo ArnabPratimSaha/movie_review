@@ -6,7 +6,8 @@ Router.post('/', (req, res, next) => {
     try {
         const name=req.body.name;
         const python = spawn('python', ['code.py',name.toString()]);
-        
+        console.log(name);
+        if(!name)return next(new CustomError(404,'no name'));
         python.stdout.on('data',async(data)=>{
             try {
                 let file=[];
