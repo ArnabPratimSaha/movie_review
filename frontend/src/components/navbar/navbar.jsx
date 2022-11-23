@@ -3,12 +3,13 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './navbar.css';
 function Navbar() {
     const [value,setValue]=useState('');
     const [searchResult,setSearchResult]=useState([]);
     const [focus,setFocus]=useState(false);
+    const navigate=useNavigate();
     useEffect(()=>{
         if(value===''){
             setSearchResult([]);
@@ -36,12 +37,13 @@ function Navbar() {
         <span className='navbar-logo'>Movie</span>
         <div className='navbar-searchdiv'>
               <BsSearch className='navbar-search-logo' />
-              <a className='search-bar' onFocus={() => setFocus(true)} onBlur={()=>setFocus(false)} >
-                  <input type="text" autocomplete='off' name="search" id="myInput" value={value} onChange={(e) => setValue(e.target.value)} />
-                  {focus && searchResult.length !== 0 && <div className='search-result-div'>
-                      {searchResult.map(r => <NavLink className={'search-result-button'} to={`/movie/${r}`}>{r}</NavLink>)}
-                  </div>}
-              </a>
+              <div  type='button' className='search-bar' >
+                <input placeholder='Search For Movies' list='suggestions' type="text" autoComplete='off' name="search" id="myInput" value={value} onChange={(e) => setValue(e.target.value)} />
+                <datalist id="suggestions" className='navbar-suggestion'>
+                    {searchResult.map(r => <option key={r} className={'search-result-button'} >{r}</option>)}
+                </datalist>
+              </div>
+              <button className='navbar-btn' onClick={()=>value && navigate(`/movie/${value}`)}>Search</button>
           </div>
       </div>
   )

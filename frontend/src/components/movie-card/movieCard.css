@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    width: 14rem;
 }
 .moviecard-fulldiv img{
     height: 21rem;

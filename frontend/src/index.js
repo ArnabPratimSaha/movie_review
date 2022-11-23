@@ -14,7 +14,7 @@ import Navbar from './components/navbar/navbar';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' errorElement={<ErrorBoundary />} element={<><Navbar/><Outlet/></>}>
-    <Route  path='home' element={<Home/>}/>
+    <Route  path='/' element={<Home/>}/>
     <Route  loader={movieLoader}  path='movie/:id' element={<Movie/>} />
   </Route>
 ));

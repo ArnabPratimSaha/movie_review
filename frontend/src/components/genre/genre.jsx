@@ -10,8 +10,8 @@ let genre = new Map([
 ['mystery','#F4A442'],
 ['romance','#2C394B'],
 ['thriller','#56BBF1'],
-['western','#F2FA5A'],
-['sci-fi','#FC5185']
+['adventure','#9C254D'],
+['sciFi','#FC5185']
   ]);
 
 const GenreComponent=({name})=> {

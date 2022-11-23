@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import {useLoaderData, useParams,Await} from 'react-router-dom';
-import { prominent } from 'color.js'
+import React from 'react'
+import {useLoaderData,Await} from 'react-router-dom';
 import './movie.css';
 import GenreComponent from '../../components/genre/genre';
 import CastComponent from '../../components/cast/cast';
@@ -9,22 +8,14 @@ import Footer from '../../components/footer/footer';
 
 
 function Movie({}) {
-    let image='https://m.media-amazon.com/images/M/MV5BM2VhYjIwMDQtZjY4OS00Yjk2LWI5YjktNjQxOTE0MjE4NjBkXkEyXkFqcGdeQXVyMDM2NDM2MQ@@.jpg'
     const movieData = useLoaderData();
-    const [color, setColor] = useState();
-    useEffect(() => {
-        console.log(movieData);
-        prominent(movieData.res.poster, { amount: 1,format:'hex' }).then(color => {
-            setColor(color)
-          })
-    }, [])
-    
   return (
     <div className='movie-fulldiv'>
         <Await resolve={movieData}>
         </Await>
         <div className="movie-topdiv" >
-            <div className='color_background' style={{background: color}}></div>
+            <div className='color_background' style={{background: movieData.color}}></div>
+            <div className='color_background' ></div>
             <img className='movie_background' src={movieData.res.poster}/>
             <div className="movie-main_container">
                 <div className="movie-poster">
@@ -50,7 +41,7 @@ function Movie({}) {
                 </div>
             </div>
         </div>
-        <div className="movie-recommendation" style={{background:color}}>
+        <div className="movie-recommendation" style={{background:movieData.color}}>
             <h2 className='rec-heading'>Movies Recommended For You</h2>
             <div className="movie-card-div">
                 {movieData.rec.map(m=><MovieCard key={m.title} poster={m.poster} title={m.title} />)}

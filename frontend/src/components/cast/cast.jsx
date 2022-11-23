@@ -1,9 +1,11 @@
 import React from 'react'
-import './cast.css'
+import altPic from './alt.jpg';
+import './cast.css';
+
 const  CastComponent=({name,pic})=> {
   return (
     <div className='cast-fulldiv'>
-        <img src={pic} alt="" />
+        <img src={pic||altPic} alt={''} />
         <p>{name}</p>
     </div>
   )

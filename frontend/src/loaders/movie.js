@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {average} from 'color.js';
 
 export const movieLoader=async({params})=>{
   try {
@@ -8,7 +8,8 @@ export const movieLoader=async({params})=>{
         data:{name:params.id},
         method:'post',
     })
-    return data.data;
+    const color=await average(data.data.res.poster, { format: 'hex' })
+    return {...data.data,color};
   } catch (error) {
     console.log(error);
   }
