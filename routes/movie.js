@@ -11,7 +11,8 @@ Router.post('/', (req, res, next) => {
             try {
                 let file=[];
                 const movies=JSON.parse(data.toString());
-                file=JSON.parse(await fs.readFile('myjsonfile.json'));
+                file=JSON.parse((await fs.readFile('myjsonfile.json')).toString());
+                
                 const mainMovie=file[movies[0].index];
                 if(!mainMovie)return next(new CustomError('404','Movie Does not exist in database'));
                 let recommendedMovies=[];
