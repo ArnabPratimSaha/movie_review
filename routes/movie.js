@@ -6,11 +6,12 @@ Router.post('/', (req, res, next) => {
     try {
         const name=req.body.name;
         const python = spawn('python', ['code.py',name.toString()]);
-        console.log(name);
+        console.log(name.toString());
         if(!name)return next(new CustomError(404,'no name'));
         python.stdout.on('data',async(data)=>{
             try {
                 let file=[];
+                console.log('reached here 1');
                 const movies=JSON.parse(data.toString());
                 file=JSON.parse((await fs.readFile('myjsonfile.json')).toString());
                 
@@ -29,9 +30,11 @@ Router.post('/', (req, res, next) => {
             }
         })
         python.stderr.on('data',err=>{
-            next(err);
+            console.log('reached here 2');
+            next(err.toString());
         })
         python.stdout.on('close',()=>{
+            console.log('reached here 3');
             // console.log('closed');
         })
     } catch (error) {
